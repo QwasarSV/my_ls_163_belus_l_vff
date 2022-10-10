@@ -1,0 +1,14 @@
+#include "../../include/my_string.h"
+
+char* my_strrchr(char* str1, char ch) {
+
+    int len = my_strlen(str1), index = 0;
+
+    while(str1[len-index] != ch){
+        index++;
+        if(index == len) {
+            return NULL;
+        }
+    }
+    return &str1[len-index];
+}
