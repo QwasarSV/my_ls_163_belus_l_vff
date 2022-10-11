@@ -7,13 +7,19 @@
     #ifndef STRUCT_NODE
     #define STRUCT_NODE
     struct node {
+        //hierarchie: n
         int value;
         struct node* next;
         struct stat st ;
         char* path_name;
+        //hierarchie: n+1
+        struct node* daughter_head;
     };
     typedef struct node node_t;
     #endif
+
+
+node_t *create_new_mother_node(int value, node_t *head);
 
 node_t *create_new_node(int value, char *path);
 void delete_node_on_key(node_t **head, int key);

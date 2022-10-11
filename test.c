@@ -14,59 +14,46 @@
 int main(int argc, char** argv) {
 
     struct dirent * pDirent;
-    node_t *head = 0;
-    node_t *tmp_node = 0;
     
+    node_t *m_head              = 0;
+    node_t *tmp_m_head          = 0;
+    node_t *head                = 0;
+    node_t *tmp_node            = 0;
     struct stat st;
     
-    
-
-    int opt = 0;
-    int jndex = 0 ;
-    
-    my_getopt_t *getopt_ptr = malloc(sizeof(my_getopt_t));
-    char valid_args[] = "1at";
-    getopt_ptr->boll_arr = malloc(sizeof(bool)*my_strlen(valid_args));
-    
-    while(jndex < argc-1){
-        while((opt = my_getopt(argc, argv, valid_args, getopt_ptr)) != -1){
-            printf("optopt: %c\n",opt);
-            n_state(opt, getopt_ptr);
-        }
-        jndex++;
-    }
-    
-
-    
+    my_getopt_t *getopt_ptr     = malloc(sizeof(my_getopt_t));
+    char valid_args[]           = "1at";
+    getopt_ptr->boll_arr        = malloc(sizeof(bool)*my_strlen(valid_args));
+        
     //struct timespec ts;
     //char* test[6][30] = {'\0'};
-    
-    DIR * pDir = opendir(".");  //"/home/cbutnotonly/Documents/Projects/my_ls/");
-    int index = 0;
+    flag_parser(argc, argv, valid_args, getopt_ptr);
 
     char cwd[PATH_MAX];
     getcwd(cwd, sizeof(cwd));
-    printf("%s", cwd);
-
+    printf("cwd : %s\n", cwd);
+    DIR * pDir = opendir(cwd);
+    
+    int index = 0;
 
     while((pDirent = readdir(pDir)) != NULL){
         tmp_node = create_new_node(index, pDirent->d_name);
         head = insert_at_head(&head, tmp_node);
         
-        printf("d_type : [%d]\n", pDirent->d_type);
-
+        //printf("d_type : [%d]\n", pDirent->d_type);
+        printf("d_name : [%s]\n", pDirent->d_name);
         if ((head->st.st_mode & S_IFMT) == S_IFREG) {
-            printf("files :%s\n", head->path_name);
+            //printf("files :%s\n", head->path_name);
             //st.st_mode++;
         }
 
         if ((head->st.st_mode & S_IFMT) == S_IFDIR) {
-            printf("dir :%s\n", head->path_name);
+            //printf("dir :%s\n", head->path_name);
             //st.st_mode++;
         }
 
         if ((head->st.st_mode & S_IFMT) == S_IFLNK) {
-            printf("LNK :%s\n", head->path_name);
+            //printf("LNK :%s\n", head->path_name);
             //st.st_mode++;
         }
 
@@ -83,20 +70,17 @@ int main(int argc, char** argv) {
         index++;
     }
 
-
+    tmp_m_head = create_new_mother_node(0, head);
+    m_head = insert_at_head(&m_head, tmp_m_head);
     
-
-
+    printf("m_node test :%ld\n",m_head->daughter_head->st.st_size);
+    printf("m_node test :%s\n",m_head->daughter_head->path_name);
 
     // printf("%c",opt = my_getopt(argc, argv, "ab:", getopt_ptr));
     // printf("%c",opt = my_getopt(argc, argv, "ab:", getopt_ptr));
     // printf("%c",opt = my_getopt(argc, argv, "ab:", getopt_ptr));
     
-    
     // printf("%c",opt = my_getopt(argc, argv, "ab:", getopt_ptr));
-    
-
-
     return 0;
 }
 

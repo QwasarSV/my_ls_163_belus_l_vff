@@ -17,7 +17,9 @@ typedef struct s_my_getopt
 #define BADCHAR (int)'?'
 #define BADARG (int)':'
 
-int my_getopt(int argc, char **argv, char *optstr, my_getopt_t *getopt_ptr);
-void n_state(char opt, my_getopt_t *getopt_ptr);
+void flag_parser(int argc, char **argv, char *valid_args, my_getopt_t *getopt_ptr);
+    int my_getopt(int argc, char **argv, char *optstr, my_getopt_t *getopt_ptr);
+    void n_state(char opt, my_getopt_t *getopt_ptr);
+
 
 #endif
