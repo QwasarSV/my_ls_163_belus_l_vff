@@ -19,7 +19,6 @@ int recur_node_count(node_t *head, int count) {
         return count;
     }
    
-    
     count++;
     
     return recur_node_count(head->next, count); 

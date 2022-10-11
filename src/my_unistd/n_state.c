@@ -10,7 +10,7 @@ void n_state(char opt, my_getopt_t *getopt_ptr) {
     case 'a':
         getopt_ptr->boll_arr[1] = true;
     break;
-    case 'b':
+    case 't':
         getopt_ptr->boll_arr[2] = true;
     break;
     case ':':
