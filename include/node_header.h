@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <sys/types.h>
+#include <dirent.h> // not a sycall
 #include "/usr/include/x86_64-linux-gnu/sys/stat.h"
     #ifndef STRUCT_NODE
     #define STRUCT_NODE
@@ -17,7 +18,6 @@
     };
     typedef struct node node_t;
     #endif
-
 
 node_t *create_new_mother_node(int value, node_t *head);
 
@@ -48,5 +48,7 @@ int recur_node_count(node_t *head, int count);
 void concatenate_llist(node_t* node_a, node_t* node_b);
 void recur_concatenate_llist(node_t* node_a, node_t* node_b);
 node_t *sort_ascending(node_t *head);
+
+void create_llist(struct dirent * pDirent, DIR *pDir, node_t *head, node_t *tmp_node);
 
 #endif

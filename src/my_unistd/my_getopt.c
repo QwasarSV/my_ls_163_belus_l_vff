@@ -3,8 +3,8 @@
 #include "../../include/main_header.h"
 
 int my_getopt(int argc, char **argv, char *optstr, my_getopt_t *getopt_ptr) {
-
-//simplified version of getopt...yes... double loop would make a simpler and shorter function but getopt is used on ls source code...
+// there is only so much you can hope making your own getopt....
+// simplified version of getopt...yes... double loop would make a simpler and shorter function but getopt is used on ls source code...
 
     if(getopt_ptr->optindex == 0 ) {
        getopt_ptr->optindex  = 1;
