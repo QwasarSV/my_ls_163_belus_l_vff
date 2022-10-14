@@ -28,13 +28,14 @@ int main(int argc, char** argv) {
         int index = 0;
         while(getopt_ptr->path_arr[index] != NULL) {
             pDir = opendir(getopt_ptr->path_arr[index]);
-            create_llist(pDirent, pDir, head, tmp_node);
+            tmp_m_head = create_new_mother_node(0, create_llist(pDirent, pDir, head, tmp_node));
+            m_head = insert_at_head(&m_head, tmp_m_head);
             index++;
         }
     }
     
-    //printf("m_node test :%ld\n",m_head->daughter_head->st.st_size);
-    //printf("m_node test :%s\n",m_head->daughter_head->path_name);
+    printf("m_node test :%ld\n",m_head->daughter_head->st.st_size);
+    printf("m_node test :%s\n",m_head->daughter_head->path_name);
 
     return 0;
 }
