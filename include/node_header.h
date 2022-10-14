@@ -8,12 +8,12 @@
     #ifndef STRUCT_NODE
     #define STRUCT_NODE
     struct node {
-        //hierarchie: n
+        //hierarchy: n
         int value;
         struct node* next;
         struct stat st ;
         char* path_name;
-        //hierarchie: n+1
+        //hierarchy: n+1
         struct node* daughter_head;
     };
     typedef struct node node_t;
@@ -49,6 +49,6 @@ void concatenate_llist(node_t* node_a, node_t* node_b);
 void recur_concatenate_llist(node_t* node_a, node_t* node_b);
 node_t *sort_ascending(node_t *head);
 
-void create_llist(struct dirent * pDirent, DIR *pDir, node_t *head, node_t *tmp_node);
+node_t* create_llist(struct dirent * pDirent, DIR *pDir, node_t *head, node_t *tmp_node);
 
 #endif

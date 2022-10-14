@@ -1,7 +1,7 @@
 #include "../../include/main_header.h"
 #include "../../include/node_header.h"
    
-void create_llist(struct dirent * pDirent, DIR *pDir, node_t *head, node_t *tmp_node) {  
+node_t* create_llist(struct dirent * pDirent, DIR *pDir, node_t *head, node_t *tmp_node) {  
     int index = 0;
     while((pDirent = readdir(pDir)) != NULL){
         tmp_node = create_new_node(index, pDirent->d_name);
@@ -35,8 +35,5 @@ void create_llist(struct dirent * pDirent, DIR *pDir, node_t *head, node_t *tmp_
         //printf("%s \n",test[index]);
         index++;
     }
-
-    //tmp_m_head = create_new_mother_node(0, head);
-    //m_head = insert_at_head(&m_head, tmp_m_head);
-
+    return head;
 } 

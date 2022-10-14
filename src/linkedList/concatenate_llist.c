@@ -1,5 +1,4 @@
 #include "../../include/node_header.h"
-#include <stdio.h>
 
 
 void recur_concatenate_llist(node_t* node_a, node_t* node_b) {
