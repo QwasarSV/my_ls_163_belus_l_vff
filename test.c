@@ -1,89 +1,46 @@
-
 #include "include/node_header.h"
 #include "include/my_string.h"
 #include "include/main_header.h"
 
-#include <stdio.h>
-#include <time.h>
-#include <unistd.h>
-#include <fcntl.h> 
-#include <dirent.h> // not a sycall
-#include <string.h>
 //#include <sys/ioctl.h>
 
 int main(int argc, char** argv) {
 
-    struct dirent * pDirent;
-    
-    node_t *m_head              = 0;
-    node_t *tmp_m_head          = 0;
-    node_t *head                = 0;
-    node_t *tmp_node            = 0;
+    struct dirent *pDirent;
     struct stat st;
+
+    node_t *m_head = 0, *tmp_m_head = 0, *head = 0, *tmp_node = 0;
     
-    my_getopt_t *getopt_ptr     = malloc(sizeof(my_getopt_t));
-    char valid_args[]           = "1at";
-    getopt_ptr->boll_arr        = malloc(sizeof(bool)*my_strlen(valid_args));
-        
-    //struct timespec ts;
-    //char* test[6][30] = {'\0'};
+    char valid_args[] = "1at";
+
+    my_getopt_t *getopt_ptr = malloc(sizeof(my_getopt_t));
+    
+    getopt_ptr->boll_arr = malloc(sizeof(bool) * my_strlen(valid_args));
+    DIR * pDir = NULL;
     flag_parser(argc, argv, valid_args, getopt_ptr);
-
-    char cwd[PATH_MAX];
-    getcwd(cwd, sizeof(cwd));
-    printf("cwd : %s\n", cwd);
-    DIR * pDir = opendir(cwd);
-    
-    int index = 0;
-
-    while((pDirent = readdir(pDir)) != NULL){
-        tmp_node = create_new_node(index, pDirent->d_name);
-        head = insert_at_head(&head, tmp_node);
-        
-        //printf("d_type : [%d]\n", pDirent->d_type);
-        printf("d_name : [%s]\n", pDirent->d_name);
-        if ((head->st.st_mode & S_IFMT) == S_IFREG) {
-            //printf("files :%s\n", head->path_name);
-            //st.st_mode++;
+    if(getopt_ptr->count_str == 0) {
+        char cwd[PATH_MAX];
+        getcwd(cwd, sizeof(cwd));
+        printf("cwd : %s\n", cwd);
+        pDir = opendir(cwd);
+        create_llist(pDirent, pDir, head, tmp_node);
+    } else {
+        int index = 0;
+        while(getopt_ptr->path_arr[index] != NULL) {
+            pDir = opendir(getopt_ptr->path_arr[index]);
+            create_llist(pDirent, pDir, head, tmp_node);
+            index++;
         }
-
-        if ((head->st.st_mode & S_IFMT) == S_IFDIR) {
-            //printf("dir :%s\n", head->path_name);
-            //st.st_mode++;
-        }
-
-        if ((head->st.st_mode & S_IFMT) == S_IFLNK) {
-            //printf("LNK :%s\n", head->path_name);
-            //st.st_mode++;
-        }
-
-        //printf("d_ino : [%ld]\n", pDirent->d_ino);
-        //printf("d_off : [%ld]\n", pDirent->d_off);
-        //printf("d_reclen : [%d]\n", pDirent->d_reclen);
-        //printf("d_type : [%d]\n", pDirent->d_type);
-        //printf("st_test : %li \n",head->st.st_ino);
-        //printf("pathname : %s \n",head->path_name);
-        //test[index][0] = '.';
-        //test[index][1] = '/';
-        //strcat(test[index], (char *)pDirent->d_name);
-        //printf("%s \n",test[index]);
-        index++;
     }
-
-    tmp_m_head = create_new_mother_node(0, head);
-    m_head = insert_at_head(&m_head, tmp_m_head);
     
-    printf("m_node test :%ld\n",m_head->daughter_head->st.st_size);
-    printf("m_node test :%s\n",m_head->daughter_head->path_name);
+    //printf("m_node test :%ld\n",m_head->daughter_head->st.st_size);
+    //printf("m_node test :%s\n",m_head->daughter_head->path_name);
 
-    // printf("%c",opt = my_getopt(argc, argv, "ab:", getopt_ptr));
-    // printf("%c",opt = my_getopt(argc, argv, "ab:", getopt_ptr));
-    // printf("%c",opt = my_getopt(argc, argv, "ab:", getopt_ptr));
-    
-    // printf("%c",opt = my_getopt(argc, argv, "ab:", getopt_ptr));
     return 0;
 }
 
+    //struct timespec ts;
+    //char* test[6][30] = {'\0'};
 
 
     // lstat("./README.md", &st);
