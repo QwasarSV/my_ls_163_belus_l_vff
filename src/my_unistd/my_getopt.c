@@ -5,13 +5,14 @@
 int my_getopt(int argc, char **argv, char *optstr, my_getopt_t *getopt_ptr) {
 // there is only so much you can hope making your own getopt....
 // simplified version of getopt...yes... double loop would make a simpler and shorter function but getopt is used on ls source code...
-
+    //getopt_ptr->optindex += 1;
     if(getopt_ptr->optindex == 0 ) {
        getopt_ptr->optindex  = 1;
        getopt_ptr->optpos = 0; 
     }
 
-    if(getopt_ptr->optindex  == argc){
+    if(getopt_ptr->optindex  == 10){
+        printf("here");
         return -1;
     }
 
@@ -22,6 +23,12 @@ int my_getopt(int argc, char **argv, char *optstr, my_getopt_t *getopt_ptr) {
 
     char *opt = my_strchr(optstr, argv[getopt_ptr->optindex][getopt_ptr->optpos]);
     
+    if (opt == NULL && argv[getopt_ptr->optindex][getopt_ptr->optpos] == '\0') {
+        getopt_ptr->optpos = 0;
+        getopt_ptr->optindex += 1;
+        return -1;   
+    }
+
     if(opt != NULL) {    
         getopt_ptr->optpos += 1;
         return opt[0];
@@ -32,11 +39,6 @@ int my_getopt(int argc, char **argv, char *optstr, my_getopt_t *getopt_ptr) {
         } else {
             getopt_ptr->optpos += 1;
             return BADCHAR;
-        }
-
-    } else if (opt == NULL && argv[getopt_ptr->optindex][getopt_ptr->optpos] == '\0') {
-        getopt_ptr->optpos = 0;
-        getopt_ptr->optindex += 1;
-        return -1;   
+        } 
     }
 }

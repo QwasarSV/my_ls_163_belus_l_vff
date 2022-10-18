@@ -14,7 +14,7 @@ void n_state(char opt, my_getopt_t *getopt_ptr, char** argv) {
         getopt_ptr->boll_arr[2] = true;
     break;
     case ':':
-        my_strcpy(getopt_ptr->path_arr[getopt_ptr->path_pos], argv[getopt_ptr->optindex]); 
+        strcpy(getopt_ptr->path_arr[getopt_ptr->path_pos], argv[getopt_ptr->optindex]); 
         getopt_ptr->path_pos += 1;
         getopt_ptr->optindex += 1;
         //return ':';
@@ -23,4 +23,5 @@ void n_state(char opt, my_getopt_t *getopt_ptr, char** argv) {
         //getopt_ptr->optindex += 1;
         break;
     }
+    opt = 0;
 }

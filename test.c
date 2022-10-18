@@ -6,18 +6,21 @@
 
 int main(int argc, char** argv) {
 
-    struct dirent *pDirent;
-    struct stat st;
+    struct dirent *pDirent = 0;
+    //struct stat st;
 
     node_t *m_head = 0, *tmp_m_head = 0, *head = 0, *tmp_node = 0;
     
     char valid_args[] = "1at";
 
-    my_getopt_t *getopt_ptr = malloc(sizeof(my_getopt_t));
-    
+    my_getopt_t*    getopt_ptr = malloc(sizeof(my_getopt_t));
+
     getopt_ptr->boll_arr = malloc(sizeof(bool) * my_strlen(valid_args));
     DIR * pDir = NULL;
-    flag_parser(argc, argv, valid_args, getopt_ptr);
+    if(argc > 1) {
+        flag_parser(argc, argv, valid_args, getopt_ptr);
+    }
+    printf("%i",getopt_ptr->optindex);
     if(getopt_ptr->count_str == 0) {
         char cwd[PATH_MAX];
         getcwd(cwd, sizeof(cwd));
@@ -26,16 +29,17 @@ int main(int argc, char** argv) {
         create_llist(pDirent, pDir, head, tmp_node);
     } else {
         int index = 0;
-        while(getopt_ptr->path_arr[index] != NULL) {
+        while(index < getopt_ptr->count_str) {
             pDir = opendir(getopt_ptr->path_arr[index]);
             tmp_m_head = create_new_mother_node(0, create_llist(pDirent, pDir, head, tmp_node));
             m_head = insert_at_head(&m_head, tmp_m_head);
             index++;
+            printf("\n");
         }
     }
     
-    printf("m_node test :%ld\n",m_head->daughter_head->st.st_size);
-    printf("m_node test :%s\n",m_head->daughter_head->path_name);
+     printf("m_node test :%ld\n",m_head->daughter_head->st.st_size);
+     printf("m_node test :%s\n",m_head->daughter_head->path_name);
 
     return 0;
 }

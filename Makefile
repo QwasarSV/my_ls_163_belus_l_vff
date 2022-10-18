@@ -9,7 +9,7 @@ CC = gcc
 # -std=c99 use the c99 standard language defintion
 # -Wextra enables extra warnings flag
 # -Werror make all warning into error
-#CFLAGS = -g3 -fsanitize=address 
+CFLAGS = -g3 -fsanitize=address 
 #-Wall -Wextra -Werror 
 
 # LDFLAGS sets flags for linker
@@ -28,9 +28,9 @@ TARGET = my_file
 # used when makefile file is invoked with no argument. given the defintions.
 # above, this Makefile will build the one named TARGET and 
 # assume that it depend on all the named objects files. 
-
+#-g before $(SOURCES) for core dump inspection
 $(TARGET) :
-	$(CC)  $(SOURCES) -o $@ -IC $^ $(CFLAGS)   
+	$(CC) -g $(SOURCES) -o $@ -IC $^ $(CFLAGS)   
 
 #phony means not a real target, it doesn't build anything
 #the phony target clean is used to remove all compiled object files.
