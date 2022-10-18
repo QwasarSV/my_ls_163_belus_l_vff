@@ -6,4 +6,3 @@ int my_strcmp(char* str1, char* str2) {
     int result = len2 - len1;
     return result;
 }
-
