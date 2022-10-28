@@ -7,5 +7,6 @@ char* my_strcpy(char* str_dest, char* str_src) {
         str_dest[index] = str_src[index];
         index++;
     }
+    str_dest[index] = '\0';
     return str_dest;
 }

@@ -5,6 +5,7 @@
 #include <sys/types.h>
 #include <dirent.h> // not a sycall
 #include "/usr/include/x86_64-linux-gnu/sys/stat.h"
+
     #ifndef STRUCT_NODE
     #define STRUCT_NODE
     struct node {
@@ -13,7 +14,7 @@
         struct node* next;
         struct stat st ;
         char* path_name;
-        //hierarchy: n+1
+        //hierarchy: n-1
         struct node* daughter_head;
     };
     typedef struct node node_t;
@@ -50,5 +51,5 @@ void recur_concatenate_llist(node_t* node_a, node_t* node_b);
 node_t *sort_ascending(node_t *head);
 
 node_t* create_llist(struct dirent * pDirent, DIR *pDir, node_t *head, node_t *tmp_node);
-
+void lexi_sort(node_t* m_node);
 #endif
