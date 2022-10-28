@@ -20,7 +20,9 @@ int main(int argc, char** argv) {
     if(argc > 1) {
         flag_parser(argc, argv, valid_args, getopt_ptr);
     }
+    
     printf("%i",getopt_ptr->optindex);
+    
     if(getopt_ptr->count_str == 0) {
         char cwd[PATH_MAX];
         getcwd(cwd, sizeof(cwd));
@@ -38,8 +40,11 @@ int main(int argc, char** argv) {
         }
     }
     
-     printf("m_node test :%ld\n",m_head->daughter_head->st.st_size);
-     printf("m_node test :%s\n",m_head->daughter_head->path_name);
+    lexi_sort(m_head);
+    test_print_list(m_head->daughter_head);
+
+    printf("m_node test :%ld\n",m_head->daughter_head->st.st_atim.tv_sec);
+    printf("m_node test :%s\n",m_head->daughter_head->path_name);
 
     return 0;
 }

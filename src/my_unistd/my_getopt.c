@@ -2,7 +2,7 @@
 #include "../../include/my_string.h"
 #include "../../include/main_header.h"
 
-int my_getopt(int argc, char **argv, char *optstr, my_getopt_t *getopt_ptr) {
+int my_getopt(char **argv, char *optstr, my_getopt_t *getopt_ptr) {
 // there is only so much you can hope making your own getopt....
 // simplified version of getopt...yes... double loop would make a simpler and shorter function but getopt is used on ls source code...
     //getopt_ptr->optindex += 1;
@@ -41,4 +41,5 @@ int my_getopt(int argc, char **argv, char *optstr, my_getopt_t *getopt_ptr) {
             return BADCHAR;
         } 
     }
+    return 0;
 }

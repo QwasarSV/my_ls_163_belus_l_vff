@@ -6,11 +6,12 @@ CC = gcc
 # -g
 # -Wall give verbose compiler warnings
 # -o0 do not optimize generated code
+# -Wall -Wextra -Werror 
 # -std=c99 use the c99 standard language defintion
 # -Wextra enables extra warnings flag
 # -Werror make all warning into error
 CFLAGS = -g3 -fsanitize=address 
-#-Wall -Wextra -Werror 
+#
 
 # LDFLAGS sets flags for linker
 #-1m says to link in libm

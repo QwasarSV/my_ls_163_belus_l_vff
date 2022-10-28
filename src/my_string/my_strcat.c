@@ -1,7 +1,5 @@
 #include "../../include/my_string.h"
 
-
-
 char* my_strcat(char* str_dest, char* str_src) {
     int dest_len = my_strlen(str_dest), index = 0;
 
