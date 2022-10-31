@@ -53,4 +53,8 @@ void recur_concatenate_llist(node_t* node_a, node_t* node_b);
 void sort_ascending02(node_t* m_node);
 node_t* create_llist(struct dirent * pDirent, DIR *pDir, node_t *head, node_t *tmp_node);
 void lexi_sort(node_t* m_node);
+
+node_t* swap(node_t* head, int node_index1, int node_index2);
+void sort_asc(node_t* m_node);
+void print_and_free_llist(node_t* m_head, bool *flags);
 #endif

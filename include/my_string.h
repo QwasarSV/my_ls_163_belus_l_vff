@@ -21,5 +21,6 @@ char* my_strstr(char* str, char* substr);
 int my_strcmp(char* str1, char* str2);
 //need to make specific header
 
+char* my_to_lower_case(char* str);
 
 #endif

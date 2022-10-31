@@ -2,7 +2,6 @@
 #include "include/my_string.h"
 #include "include/main_header.h"
 
-//#include <sys/ioctl.h>
 
 int main(int argc, char** argv) {
 
@@ -12,68 +11,49 @@ int main(int argc, char** argv) {
     
     char valid_args[] = "1at";
 
-    my_getopt_t*    getopt_ptr = malloc(sizeof(my_getopt_t));
+    my_getopt_t* getopt_ptr = malloc(sizeof(my_getopt_t));
 
     getopt_ptr->boll_arr = malloc(sizeof(bool) * my_strlen(valid_args));
     DIR * pDir = NULL;
+    
+    char cwd[PATH_MAX];
+    
     if(argc > 1) {
         flag_parser(argc, argv, valid_args, getopt_ptr);
     }
     
     if(getopt_ptr->count_str == 0) {
-        char cwd[PATH_MAX];
         getcwd(cwd, sizeof(cwd));
-        printf("cwd : %s\n", cwd);
         pDir = opendir(cwd);
         tmp_m_head = create_new_mother_node(0, create_llist(pDirent, pDir, head, tmp_node));
         m_head = insert_at_head(&m_head, tmp_m_head);
-        //create_llist(pDirent, pDir, head, tmp_node);
         closedir(pDir);
     } else {
         int index = 0;
         while(index < getopt_ptr->count_str) {
-            printf("PATH ARR : %s \n",getopt_ptr->path_arr[index]);
-            chdir(getopt_ptr->path_arr[index]);
-        char cwd[PATH_MAX];
+        chdir(getopt_ptr->path_arr[index]);
         getcwd(cwd, sizeof(cwd));
-        printf("cwd : %s\n", cwd);
         pDir = opendir(cwd);
-            tmp_m_head = create_new_mother_node(index, create_llist(pDirent, pDir, head, tmp_node));
-            m_head = insert_at_head(&m_head, tmp_m_head);
-            index++;
-            printf("\n");
-            chdir("../");
-            closedir(pDir);
+        tmp_m_head = create_new_mother_node(index, create_llist(pDirent, pDir, head, tmp_node));
+        m_head = insert_at_head(&m_head, tmp_m_head);
+        index++;
+        printf("\n");
+        chdir("../");
+        closedir(pDir);
         }
     }
     
     if(getopt_ptr->boll_arr[2] == true) {
-        sort_ascending02(m_head);
-    } else {
+        sort_asc(m_head);
+    }
+    
+    if(getopt_ptr->boll_arr[2] != true) {
         lexi_sort(m_head);
     }
-    
-    node_t *tmp = m_head; 
-    ///int fndex = 0;
 
-    while (tmp != NULL) {
-        test_print_list(tmp->daughter_head, getopt_ptr->boll_arr);
-        free_node(tmp->daughter_head);
-        tmp = tmp->next;
-    }
-    free_node(m_head);
-    
+    print_and_free_llist(m_head, getopt_ptr->boll_arr);
+    free_opt(argc, argv, getopt_ptr);
 
-    dynamic_free(argc,argv, getopt_ptr);
-    
-    if(getopt_ptr->count_str > 0) { 
-        free(getopt_ptr->path_arr) ;
-    }
-    free(getopt_ptr->boll_arr);
-    free(getopt_ptr);
-
-  
-  
     return 0;
 }
 
