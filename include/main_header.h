@@ -35,6 +35,7 @@ int flag_parser(int argc, char **argv, char *valid_args, my_getopt_t *getopt_ptr
     int my_getopt(char **argv, char *optstr, my_getopt_t *getopt_ptr);
     void n_state(char opt, my_getopt_t *getopt_ptr, char** argv);
     
+    void dynamic_free(int argc, char** argv, my_getopt_t *getopt_ptr);
     
 
 #endif
