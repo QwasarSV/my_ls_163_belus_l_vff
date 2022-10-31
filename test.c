@@ -7,8 +7,8 @@
 int main(int argc, char** argv) {
 
     struct dirent *pDirent = 0;
-    //struct stat st;
-
+    struct stat st;
+    
     node_t *m_head = 0, *tmp_m_head = 0, *head = 0, *tmp_node = 0;
     
     char valid_args[] = "1at";
@@ -21,30 +21,44 @@ int main(int argc, char** argv) {
         flag_parser(argc, argv, valid_args, getopt_ptr);
     }
     
-    printf("%i",getopt_ptr->optindex);
-    
     if(getopt_ptr->count_str == 0) {
         char cwd[PATH_MAX];
         getcwd(cwd, sizeof(cwd));
         printf("cwd : %s\n", cwd);
         pDir = opendir(cwd);
-        create_llist(pDirent, pDir, head, tmp_node);
+        tmp_m_head = create_new_mother_node(0, create_llist(pDirent, pDir, head, tmp_node));
+        m_head = insert_at_head(&m_head, tmp_m_head);
+        //create_llist(pDirent, pDir, head, tmp_node);
     } else {
         int index = 0;
         while(index < getopt_ptr->count_str) {
-            pDir = opendir(getopt_ptr->path_arr[index]);
-            tmp_m_head = create_new_mother_node(0, create_llist(pDirent, pDir, head, tmp_node));
+            printf("PATH ARR : %s \n",getopt_ptr->path_arr[index]);
+            chdir(getopt_ptr->path_arr[index]);
+        char cwd[PATH_MAX];
+        getcwd(cwd, sizeof(cwd));
+        printf("cwd : %s\n", cwd);
+        pDir = opendir(cwd);
+            tmp_m_head = create_new_mother_node(index, create_llist(pDirent, pDir, head, tmp_node));
             m_head = insert_at_head(&m_head, tmp_m_head);
             index++;
             printf("\n");
+            chdir("../");
         }
     }
     
-    lexi_sort(m_head);
-    test_print_list(m_head->daughter_head);
+    if(getopt_ptr->boll_arr[2] == true) {
+        sort_ascending02(m_head);
+    } else {
+        lexi_sort(m_head);
+    }
+    
+    node_t *tmp = m_head; 
 
-    printf("m_node test :%ld\n",m_head->daughter_head->st.st_atim.tv_sec);
-    printf("m_node test :%s\n",m_head->daughter_head->path_name);
+    while (tmp != NULL){
+        test_print_list(m_head->daughter_head, getopt_ptr->boll_arr);
+        tmp = tmp->next;
+    }
+    
 
     return 0;
 }
