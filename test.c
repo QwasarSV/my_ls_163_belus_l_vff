@@ -7,7 +7,6 @@
 int main(int argc, char** argv) {
 
     struct dirent *pDirent = 0;
-    struct stat st;
     
     node_t *m_head = 0, *tmp_m_head = 0, *head = 0, *tmp_node = 0;
     
@@ -29,6 +28,7 @@ int main(int argc, char** argv) {
         tmp_m_head = create_new_mother_node(0, create_llist(pDirent, pDir, head, tmp_node));
         m_head = insert_at_head(&m_head, tmp_m_head);
         //create_llist(pDirent, pDir, head, tmp_node);
+        closedir(pDir);
     } else {
         int index = 0;
         while(index < getopt_ptr->count_str) {
@@ -43,6 +43,7 @@ int main(int argc, char** argv) {
             index++;
             printf("\n");
             chdir("../");
+            closedir(pDir);
         }
     }
     
@@ -53,13 +54,26 @@ int main(int argc, char** argv) {
     }
     
     node_t *tmp = m_head; 
+    ///int fndex = 0;
 
-    while (tmp != NULL){
-        test_print_list(m_head->daughter_head, getopt_ptr->boll_arr);
+    while (tmp != NULL) {
+        test_print_list(tmp->daughter_head, getopt_ptr->boll_arr);
+        free_node(tmp->daughter_head);
         tmp = tmp->next;
     }
+    free_node(m_head);
     
 
+    dynamic_free(argc,argv, getopt_ptr);
+    
+    if(getopt_ptr->count_str > 0) { 
+        free(getopt_ptr->path_arr) ;
+    }
+    free(getopt_ptr->boll_arr);
+    free(getopt_ptr);
+
+  
+  
     return 0;
 }
 

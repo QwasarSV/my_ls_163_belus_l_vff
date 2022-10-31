@@ -6,10 +6,12 @@ node_t* create_llist(struct dirent * pDirent, DIR *pDir, node_t *head, node_t *t
     int index = 0;
     while((pDirent = readdir(pDir)) != NULL) {
         
-        printf("d_name : [%s]\n", pDirent->d_name);
-        tmp_node = create_new_node(index, pDirent->d_name);
+        //printf("d_name : [%s]\n", pDirent->d_name);
+        char *tmp_str = malloc(sizeof(char)* my_strlen(pDirent->d_name)+1);
+        my_strcpy(tmp_str,pDirent->d_name);
+        tmp_node = create_new_node(index, tmp_str);
         head = insert_at_head(&head, tmp_node);
-        
+        //free(tmp_str);
         // printf("repport\n");
         // printf("file :%s\n", head->path_name);
         // printf("size :%li\n", head->st.st_size);
@@ -18,19 +20,19 @@ node_t* create_llist(struct dirent * pDirent, DIR *pDir, node_t *head, node_t *t
         // printf("\n");
         //printf("d_type : [%d]\n", pDirent->d_type);
         
-        if ((head->st.st_mode & S_IFMT) == S_IFREG) {
-           // printf("files :%s\n", head->path_name);
-        }
+        // if ((head->st.st_mode & S_IFMT) == S_IFREG) {
+        //    // printf("files :%s\n", head->path_name);
+        // }
 
-        if ((head->st.st_mode & S_IFMT) == S_IFDIR) {
-            //printf("dir :%s\n", head->path_name);
-            //st.st_mode++;
-        }
+        // if ((head->st.st_mode & S_IFMT) == S_IFDIR) {
+        //     //printf("dir :%s\n", head->path_name);
+        //     //st.st_mode++;
+        // }
 
-        if ((head->st.st_mode & S_IFMT) == S_IFLNK) {
-            //printf("LNK :%s\n", head->path_name);
-            //st.st_mode++;
-        }
+        // if ((head->st.st_mode & S_IFMT) == S_IFLNK) {
+        //     //printf("LNK :%s\n", head->path_name);
+        //     //st.st_mode++;
+        // }
         //printf("d_ino : [%ld]\n", pDirent->d_ino);
         //printf("d_off : [%ld]\n", pDirent->d_off);
         //printf("d_reclen : [%d]\n", pDirent->d_reclen);

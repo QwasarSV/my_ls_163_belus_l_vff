@@ -82,7 +82,6 @@ void lexi_sort(node_t* m_node) {
 void sort_ascending02(node_t* m_node) {
 
     node_t *tmp = NULL, *next = NULL;
-    char* tmp_str1, * tmp_str2;
 
     while(m_node != NULL) {
         tmp = m_node->daughter_head;
