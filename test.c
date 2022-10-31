@@ -31,15 +31,14 @@ int main(int argc, char** argv) {
     } else {
         int index = 0;
         while(index < getopt_ptr->count_str) {
-        chdir(getopt_ptr->path_arr[index]);
-        getcwd(cwd, sizeof(cwd));
-        pDir = opendir(cwd);
-        tmp_m_head = create_new_mother_node(index, create_llist(pDirent, pDir, head, tmp_node));
-        m_head = insert_at_head(&m_head, tmp_m_head);
-        index++;
-        printf("\n");
-        chdir("../");
-        closedir(pDir);
+            chdir(getopt_ptr->path_arr[index]);
+            getcwd(cwd, sizeof(cwd));
+            pDir = opendir(cwd);
+            tmp_m_head = create_new_mother_node(index, create_llist(pDirent, pDir, head, tmp_node));
+            m_head = insert_at_head(&m_head, tmp_m_head);
+            index++;
+            chdir("../");
+            closedir(pDir);
         }
     }
     
