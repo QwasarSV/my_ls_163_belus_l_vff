@@ -5,17 +5,18 @@
 #include <sys/types.h>
 #include <dirent.h> // not a sycall
 #include "/usr/include/x86_64-linux-gnu/sys/stat.h"
+#include <stdbool.h>
 
     #ifndef STRUCT_NODE
     #define STRUCT_NODE
     struct node {
-        //hierarchy: n
+        //hierarchy: n+1
         int value;
-        struct node* next;
-        struct stat st ;
-        char* path_name;
-        //hierarchy: n-1
         struct node* daughter_head;
+        //hierarchy: n
+        char* path_name;
+        struct stat st;
+        struct node* next;
     };
     typedef struct node node_t;
     #endif
@@ -36,7 +37,7 @@ void insert_after_node(node_t *node_to_insert, node_t *newnode);
 
 node_t *insert_at_head(node_t **head, node_t *node_to_insert);
 void reverse_node_order(node_t **head);
-void test_print_list(node_t *head);
+void test_print_list(node_t *head, bool* flags);
 void free_node(node_t *head);
 void recur_free_node(node_t *head);
 
@@ -48,8 +49,8 @@ int node_count(node_t *head);
 int recur_node_count(node_t *head, int count);
 void concatenate_llist(node_t* node_a, node_t* node_b);
 void recur_concatenate_llist(node_t* node_a, node_t* node_b);
-node_t *sort_ascending(node_t *head);
-
+//node_t *sort_ascending(node_t *head);
+void sort_ascending02(node_t* m_node);
 node_t* create_llist(struct dirent * pDirent, DIR *pDir, node_t *head, node_t *tmp_node);
 void lexi_sort(node_t* m_node);
 #endif
