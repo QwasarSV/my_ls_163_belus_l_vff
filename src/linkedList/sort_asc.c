@@ -14,14 +14,13 @@ void sort_asc(node_t* m_node) {
                     m_node->daughter_head = swap(m_node->daughter_head, tmp->value, next->value);        
                     //printf("1st // swap %s  with %s \n",tmp->path_name, next->path_name);
                     tmp = next;
-                }
-                
-                if(tmp->st.st_mtim.tv_sec == next->st.st_mtim.tv_sec ) {
+                } else if(tmp->st.st_mtim.tv_sec == next->st.st_mtim.tv_sec ) {
                     if(tmp->st.st_mtim.tv_nsec < next->st.st_mtim.tv_nsec ) {
                         m_node->daughter_head = swap(m_node->daughter_head, tmp->value, next->value);        
                         //printf("2 nd //swap %s  with %s \n",tmp->path_name, next->path_name);
                         tmp = next;
-                    } else  if(str_cmp_check(tmp, next) == true) {
+                    } 
+                    else if(str_cmp_check(tmp, next) == true && m_node->daughter_head->value != next->value) {
                     m_node->daughter_head = swap(m_node->daughter_head, tmp->value, next->value);        
                     tmp = next;
                     }
