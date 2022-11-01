@@ -22,7 +22,6 @@ int main(int argc, char** argv) {
     }
 
     if(getopt_ptr->count_str == 0) {
-        printf("here");
         getcwd(cwd, sizeof(cwd));
         pDir = opendir(cwd);
         tmp_m_head = create_new_mother_node(0, create_llist(pDirent, pDir, head, tmp_node));
@@ -41,13 +40,13 @@ int main(int argc, char** argv) {
             closedir(pDir);
         }
     }
-    printf("-%d-",getopt_ptr->boll_arr[2]);
-    printf("-%d-",true);
+    // printf("-%d-",getopt_ptr->boll_arr[2]);
+    // printf("-%d-",true);
     if(getopt_ptr->boll_arr[2] == true) {
         sort_asc(m_head);
     }
     
-    if(getopt_ptr->boll_arr[2] != true) {
+    if(getopt_ptr->boll_arr[2] != 1) {
         lexi_sort(m_head);
     }
 

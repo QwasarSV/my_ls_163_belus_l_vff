@@ -1,5 +1,6 @@
 #include "../../include/main_header.h"
 #include "../../include/my_stdio.h"
+
 void test_print_list(node_t *head, bool* flags){
     node_t *tmp = head;
     int state = false;
@@ -13,10 +14,10 @@ void test_print_list(node_t *head, bool* flags){
     }
 
     if (state && (head->st.st_mode & S_IFMT) == S_IFDIR) {
-        printf("%s\n", tmp->path_name);
+        my_printf("%s\n", tmp->path_name);
     }
     if (state && (head->st.st_mode & S_IFMT) == S_IFREG) {
-        printf("%s\n", tmp->path_name);
+        my_printf("%s\n", tmp->path_name);
     }
     free(tmp->path_name);
     tmp = tmp->next;
