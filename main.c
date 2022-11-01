@@ -1,5 +1,3 @@
-#include "include/node_header.h"
-#include "include/my_string.h"
 #include "include/main_header.h"
 
 
@@ -50,6 +48,7 @@ int main(int argc, char** argv) {
         lexi_sort(m_head);
     }
 
+    
     print_and_free_llist(m_head, getopt_ptr->boll_arr);
     free_opt(argc, argv, getopt_ptr);
 

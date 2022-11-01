@@ -1,5 +1,3 @@
-#include "../../include/my_ctype.h"
-#include "../../include/my_string.h"
 #include "../../include/main_header.h"
 
 int my_getopt(char **argv, char *optstr, my_getopt_t *getopt_ptr) {

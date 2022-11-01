@@ -1,5 +1,4 @@
-#include "../../include/my_string.h"
-#include <stdio.h>
+#include "../../include/main_header.h"
 
 char* my_strcpy(char* str_dest, char* str_src) {
     int len = my_strlen(str_src), index = 0;

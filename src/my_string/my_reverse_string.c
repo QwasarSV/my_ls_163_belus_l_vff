@@ -1,4 +1,4 @@
-#include "../../include/my_string.h"
+#include "../../include/main_header.h"
 
 void my_reverse_string(char* str) {
 

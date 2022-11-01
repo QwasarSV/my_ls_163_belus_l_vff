@@ -1,4 +1,3 @@
-#include "../../include/my_string.h"
 
 char* my_strncpy(char* str1, char* str2, int n) {
 

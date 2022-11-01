@@ -1,5 +1,3 @@
-#include "../../include/node_header.h"
-#include "../../include/my_string.h"
 #include "../../include/main_header.h"
 
 node_t* swap(node_t* head, int node_index1, int node_index2) {

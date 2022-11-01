@@ -1,4 +1,4 @@
-#include "../../include/node_header.h"
+#include "../../include/main_header.h"
 
 
 void insert_after_node(node_t *node_to_insert, node_t *newnode){
