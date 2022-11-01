@@ -1,5 +1,4 @@
 #include "../../include/main_header.h"
-#include "../../include/my_string.h"
 
 void dynamic_malloc(int argc, char** argv, my_getopt_t *getopt_ptr) {    
     int index = 1, count = 0;
@@ -11,7 +10,6 @@ void dynamic_malloc(int argc, char** argv, my_getopt_t *getopt_ptr) {
         index++;
     }
 }
-
 
 void dynamic_free(int argc, char** argv, my_getopt_t *getopt_ptr) {    
     int index = 1, count = 0;

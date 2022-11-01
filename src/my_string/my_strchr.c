@@ -1,4 +1,4 @@
-#include "../../include/my_string.h"
+#include "../../include/main_header.h"
 
 char* my_strchr(char* str, char ch) {
 

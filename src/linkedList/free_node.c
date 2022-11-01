@@ -1,4 +1,4 @@
-#include "../../include/node_header.h"
+#include "../../include/main_header.h"
 void free_node(node_t *head) {
 
     node_t *tmp = head; 

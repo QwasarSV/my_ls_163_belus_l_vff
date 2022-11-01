@@ -1,4 +1,4 @@
-#include "../../include/my_string.h"
+#include "../../include/main_header.h"
 
 bool my_is_sort(int* int_array, int len) {
   

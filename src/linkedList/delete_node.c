@@ -1,4 +1,4 @@
-#include "../../include/node_header.h"
+#include "../../include/main_header.h"
 
 void delete_node_on_key(node_t **head, int key) {
     node_t *tmp = *head;

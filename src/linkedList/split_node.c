@@ -1,4 +1,4 @@
-#include "../../include/node_header.h"
+#include "../../include/main_header.h"
 
 node_t *split_node_on_pos(node_t *head, int pos) {  
     int index = 0;

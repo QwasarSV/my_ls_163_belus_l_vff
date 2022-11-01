@@ -1,4 +1,4 @@
-#include "../../include/node_header.h"
+#include "../../include/main_header.h"
 
 node_t *min_sort(node_t *head, char *path) {
     

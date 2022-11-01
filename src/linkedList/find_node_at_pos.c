@@ -1,4 +1,4 @@
-#include "../../include/node_header.h"
+#include "../../include/main_header.h"
 
 
 node_t *find_node_at_pos(node_t *head, int pos) {
