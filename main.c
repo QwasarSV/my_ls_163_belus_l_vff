@@ -12,15 +12,17 @@ int main(int argc, char** argv) {
     my_getopt_t* getopt_ptr = malloc(sizeof(my_getopt_t));
 
     getopt_ptr->boll_arr = malloc(sizeof(bool) * my_strlen(valid_args));
+    fill_bool_array(getopt_ptr->boll_arr, my_strlen(valid_args));
     DIR * pDir = NULL;
     
     char cwd[PATH_MAX];
-    
+     
     if(argc > 1) {
         flag_parser(argc, argv, valid_args, getopt_ptr);
     }
-    
+
     if(getopt_ptr->count_str == 0) {
+        printf("here");
         getcwd(cwd, sizeof(cwd));
         pDir = opendir(cwd);
         tmp_m_head = create_new_mother_node(0, create_llist(pDirent, pDir, head, tmp_node));
@@ -39,7 +41,8 @@ int main(int argc, char** argv) {
             closedir(pDir);
         }
     }
-    
+    printf("-%d-",getopt_ptr->boll_arr[2]);
+    printf("-%d-",true);
     if(getopt_ptr->boll_arr[2] == true) {
         sort_asc(m_head);
     }

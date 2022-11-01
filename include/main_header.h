@@ -64,6 +64,7 @@ int flag_parser(int argc, char **argv, char *valid_args, my_getopt_t *getopt_ptr
 void dynamic_free(int argc, char** argv, my_getopt_t *getopt_ptr);
 void free_opt(int argc, char** argv, my_getopt_t *getopt_ptr);
 bool str_cmp_check(node_t* tmp, node_t* next);
+void fill_bool_array(bool* bool_arr, int len);
 
 //my ctype
 int my_isalnum(char ch);
@@ -126,5 +127,8 @@ void lexi_sort(node_t* m_node);
 node_t* swap(node_t* head, int node_index1, int node_index2);
 void sort_asc(node_t* m_node);
 void print_and_free_llist(node_t* m_head, bool *flags);
+
+
+
 
 #endif
