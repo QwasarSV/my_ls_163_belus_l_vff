@@ -13,6 +13,10 @@ int main(int argc, char** argv) {
 
     getopt_ptr->boll_arr = malloc(sizeof(bool) * my_strlen(valid_args));
     fill_bool_array(getopt_ptr->boll_arr, my_strlen(valid_args));
+    
+    getopt_ptr->boll_arr[0] = 1; // gandalf
+    
+    
     DIR * pDir = NULL;
     
     char cwd[PATH_MAX];
