@@ -19,6 +19,7 @@ void test_print_list(node_t *head, bool* flags){
     if (state && (head->st.st_mode & S_IFMT) == S_IFREG) {
         my_printf("%s\n", tmp->path_name);
     }
+    
     free(tmp->path_name);
     tmp = tmp->next;
     }

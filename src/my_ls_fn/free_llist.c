@@ -9,6 +9,6 @@ void print_and_free_llist(node_t* m_head, bool *flags) {
         free_node(tmp->daughter_head);
         tmp = tmp->next;
     }
-    free_node(m_head);
+    //free_node(m_head);
 
 }
