@@ -2,8 +2,6 @@
 #include <stdio.h>
 
 int main(int argc, char** argv) {
-    (void)argc;
-    (void)argv;
     //printf("\n why dont you take my output damnit\n");
     struct dirent *pDirent = 0;
     
@@ -19,11 +17,12 @@ int main(int argc, char** argv) {
 
     getopt_ptr->boll_arr[0] = 1; // gandalf
     getopt_ptr->count_str = 0;
-    
+    sort_str_arr(getopt_ptr);
     DIR * pDir = NULL;
     
     char cwd[PATH_MAX];
-     
+    char home[PATH_MAX];
+     getcwd(home, sizeof(home));
     if(argc > 1) {
         flag_parser(argc, argv, valid_args, getopt_ptr);
     }
@@ -43,7 +42,7 @@ int main(int argc, char** argv) {
             tmp_m_head = create_new_mother_node(index, create_llist(pDirent, pDir, head, tmp_node));
             m_head = insert_at_head(&m_head, tmp_m_head);
             index++;
-            chdir("../");
+            chdir(home);
             closedir(pDir);
         }
     }
