@@ -57,12 +57,12 @@ int main(int argc, char** argv) {
         lexi_sort(m_head);
     }
 
-    if(getopt_ptr->count_str < 2) {
-    print_and_free_llist(m_head, getopt_ptr->boll_arr);
-    } else {
-        iterate_m_node(m_head, getopt_ptr->boll_arr, getopt_ptr->path_arr);
+    //if(getopt_ptr->count_str < 2) {
+    print_and_free_llist(m_head, getopt_ptr);
+    //} else {
+      //  iterate_m_node(m_head, getopt_ptr->boll_arr, getopt_ptr->path_arr);
 
-    }
+    //}
     free_opt(argc, argv, getopt_ptr);
     
     return 0;
