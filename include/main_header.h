@@ -126,9 +126,7 @@ void lexi_sort(node_t* m_node);
 
 node_t* swap(node_t* head, int node_index1, int node_index2);
 void sort_asc(node_t* m_node);
+void iterate_m_node(node_t *m_node, bool* bool_arr, char ** str_arr);
 void print_and_free_llist(node_t* m_head, bool *flags);
-
-
-
 
 #endif

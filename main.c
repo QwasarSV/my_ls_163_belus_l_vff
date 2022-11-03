@@ -1,8 +1,10 @@
 #include "include/main_header.h"
-
+#include <stdio.h>
 
 int main(int argc, char** argv) {
-
+    (void)argc;
+    (void)argv;
+    //printf("\n why dont you take my output damnit\n");
     struct dirent *pDirent = 0;
     
     node_t *m_head = 0, *tmp_m_head = 0, *head = 0, *tmp_node = 0;
@@ -55,10 +57,14 @@ int main(int argc, char** argv) {
         lexi_sort(m_head);
     }
 
-    
+    if(getopt_ptr->count_str < 2) {
     print_and_free_llist(m_head, getopt_ptr->boll_arr);
-    free_opt(argc, argv, getopt_ptr);
+    } else {
+        iterate_m_node(m_head, getopt_ptr->boll_arr, getopt_ptr->path_arr);
 
+    }
+    free_opt(argc, argv, getopt_ptr);
+    
     return 0;
 }
 

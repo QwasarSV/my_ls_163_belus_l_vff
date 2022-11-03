@@ -6,12 +6,12 @@ CC = gcc
 # -g
 # -Wall give verbose compiler warnings
 # -o0 do not optimize generated code
-# 
+# -g3 -fsanitize=address
 # -std=c99 use the c99 standard language defintion
 # -Wextra enables extra warnings flag
 # -Werror make all warning into error
-CFLAGS = -g3 -fsanitize=address -Wall -Wextra -Werror 
-#
+CFLAGS = -Wall -Wextra -Werror 
+# this is a test
 
 # LDFLAGS sets flags for linker
 #-1m says to link in libm
@@ -23,7 +23,7 @@ SOURCES = *.c src/*/*.c
 
 
 OBJECTS = $(SOURCES:.c)
-TARGET = my_file
+TARGET = my_ls
 
 # first target defined in Makefile is the one
 # used when makefile file is invoked with no argument. given the defintions.
@@ -39,9 +39,9 @@ $(TARGET) :
 .PHONY: fclean
 
 fclean:
-	@rm -f $(TARGET) $(OBJECTS) core 
+	rm -f $(TARGET) $(OBJECTS) core 
 
 .PHONY: run
 
 run:
-	@./$(TARGET) 
+	./$(TARGET) 
