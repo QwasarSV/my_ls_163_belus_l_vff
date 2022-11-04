@@ -1,65 +1,33 @@
 #include "include/main_header.h"
-#include <stdio.h>
 
 int main(int argc, char** argv) {
-    struct dirent *pDirent = 0;
-    
-    node_t *m_head = 0, *tmp_m_head = 0, *head = 0, *tmp_node = 0;
-    
-    char valid_args[] = "1at";
-
+    int index = 0;
+    node_t *m_head = 0, *head = 0;
     my_getopt_t* getopt_ptr = malloc(sizeof(my_getopt_t));
-
-    getopt_ptr->boll_arr = malloc(sizeof(bool) * my_strlen(valid_args));
-    fill_bool_array(getopt_ptr->boll_arr, my_strlen(valid_args));
+    init_getopt(getopt_ptr);
     
-    getopt_ptr->boll_arr[0] = 1; // gandalf
-    getopt_ptr->count_str = 0; 
-    
-    DIR * pDir = NULL;
-    
-    char cwd[PATH_MAX];
-    char home[PATH_MAX];
-     getcwd(home, sizeof(home));
     if(argc > 1) {
-        flag_parser(argc, argv, valid_args, getopt_ptr);
-    }
-
-    if(getopt_ptr->count_str > 1) {
-        sort_str_arr(getopt_ptr);
+        flag_parser(argc, argv, VALID_ARG, getopt_ptr);
     }
 
     if(getopt_ptr->count_str == 0) {
-        getcwd(cwd, sizeof(cwd));
-        pDir = opendir(cwd);
-        tmp_m_head = create_new_mother_node(0, create_llist(pDirent, pDir, head, tmp_node));
-        m_head = insert_at_head(&m_head, tmp_m_head);
-        closedir(pDir);
+        m_head = get_info(m_head, head, index);
     } else {
-        int index = 0;
+        sort_str_arr(getopt_ptr);
         while(index < getopt_ptr->count_str) {
             chdir(getopt_ptr->path_arr[index]);
-            getcwd(cwd, sizeof(cwd));
-            pDir = opendir(cwd);
-            tmp_m_head = create_new_mother_node(index, create_llist(pDirent, pDir, head, tmp_node));
-            m_head = insert_at_head(&m_head, tmp_m_head);
-            index++;
-            chdir(home);
-            closedir(pDir);
+            m_head = get_info(m_head, head, index);
+            index += 1;
+            chdir(getopt_ptr->home);
         }
     }
 
     if(getopt_ptr->boll_arr[2] == true) {
         sort_asc(m_head);
-    }
-    
-    if(getopt_ptr->boll_arr[2] != 1) {
-        lexi_sort(m_head);
-    }
+    } else {lexi_sort(m_head);}
 
     print_and_free_llist(m_head, getopt_ptr);
     free_opt(argc, argv, getopt_ptr);
     
     return 0;
 }
-

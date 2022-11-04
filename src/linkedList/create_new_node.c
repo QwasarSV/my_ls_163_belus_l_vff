@@ -5,9 +5,7 @@ node_t *create_new_node(int value, char* path) {
     result->value = value;
     result->next = NULL;
     result->daughter_head = NULL;
-
     result->path_name = path;
     lstat(path, &result->st);
-
     return result;
 }

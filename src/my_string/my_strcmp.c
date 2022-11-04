@@ -1,14 +1,11 @@
-#include "../../include/main_header.h"
-
 int my_strcmp(char* str1, char* str2) {
     int index = 0 ;
-    char ch1 = str1[index];
-    char ch2 = str2[index];
+    char ch1 = str1[index], ch2 = str2[index];
 
     while(ch1 == ch2){
         ch1 = str1[index];
         ch2 = str2[index];
-    
+
         if(ch1 == '\0') {
             return ch1 - ch2;
         }
@@ -18,9 +15,3 @@ int my_strcmp(char* str1, char* str2) {
 
     return ch1 - ch2;
 }
-/*
-    int len1 = my_strlen(str1);
-    int len2 = my_strlen(str2);
-    int result = len2 - len1;
-    return result;
-*/

@@ -1,20 +1,11 @@
 #ifndef __HEADERFILE_K_
 #define __HEADERFILE_K_
 
-
-
 #include <dirent.h> // not a sycall
 #include "/usr/include/x86_64-linux-gnu/sys/stat.h"
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdbool.h>
-
-//#include <sys/types.h>
-//#include <fcntl.h> 
-//#include <string.h>
-//#include <stddef.h>
-//#include <stdio.h>
-//#include <time.h>
 
 #ifndef STRUCT_NODE
 #define STRUCT_NODE
@@ -41,24 +32,36 @@ typedef struct s_my_getopt
     bool* boll_arr; // activate each option
     int count_str;
     int path_pos;
-    char** path_arr; 
+    char** path_arr;
+    char home[PATH_MAX]; 
 } my_getopt_t;
 #endif
 
 #define BADCHAR (int)'?'
 #define BADARG (int)':'
+#define VALID_ARG "-1at"
 
+
+// myls core components
 int flag_parser(int argc, char **argv, char *valid_args, my_getopt_t *getopt_ptr);
     void count_path_array(int argc, char** argv,my_getopt_t *getopt_ptr);
     void dynamic_malloc(int argc, char** argv, my_getopt_t *getopt_ptr);
     int my_getopt(char **argv, char *optstr, my_getopt_t *getopt_ptr);
     void n_state(char opt, my_getopt_t *getopt_ptr, char** argv);
     void sort_str_arr(my_getopt_t *getopt_ptr);
-node_t* create_llist(struct dirent * pDirent, DIR *pDir, node_t *head, node_t *tmp_node);    
+
+node_t* create_llist(struct dirent * pDirent, DIR *pDir, node_t *head, node_t *tmp_node); 
+void sort_asc(node_t* m_node);
+void lexi_sort(node_t* m_node);
+
+void print_and_free_llist(node_t* m_head, my_getopt_t *getopt_ptr);
+
 void dynamic_free(int argc, char** argv, my_getopt_t *getopt_ptr);
 void free_opt(int argc, char** argv, my_getopt_t *getopt_ptr);
-bool str_cmp_check(node_t* tmp, node_t* next);
 void fill_bool_array(bool* bool_arr, int len);
+void init_getopt(my_getopt_t* getopt_ptr);
+
+node_t* get_info(node_t* m_head, node_t* head, int index);
 
 //my string
 
@@ -71,7 +74,6 @@ int my_strlen(char *str);
 
 node_t *create_new_mother_node(int value, node_t *head);
 node_t *create_new_node(int value, char *path);
-void insert_after_node(node_t* node_to_insert, node_t* new_node);
 node_t *insert_at_head(node_t **head, node_t *node_to_insert);
 void reverse_node_order(node_t **head);
 void free_node(node_t *head);
@@ -79,9 +81,8 @@ void recur_free_node(node_t *head);
 void test_print_list(node_t *head, bool* flags);
 int node_count(node_t *head);
 int recur_node_count(node_t *head, int count);
-void lexi_sort(node_t* m_node);
 node_t* swap(node_t* head, int node_index1, int node_index2);
-void sort_asc(node_t* m_node);
-void print_and_free_llist(node_t* m_head, my_getopt_t *getopt_ptr);
+
+
 
 #endif
