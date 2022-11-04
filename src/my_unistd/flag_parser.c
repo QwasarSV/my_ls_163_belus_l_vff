@@ -2,9 +2,9 @@
 
 int flag_parser(int argc, char **argv,char *valid_args, my_getopt_t *getopt_ptr) {   
     int opt = 0;
-    getopt_ptr->optindex = 0;
-    getopt_ptr->path_pos = 0;
-    getopt_ptr->count_str = 0;
+    // getopt_ptr->optindex = 0;
+    // getopt_ptr->path_pos = 0;
+    // getopt_ptr->count_str = 0;
     count_path_array(argc,argv, getopt_ptr);
     
     if(getopt_ptr->count_str > 0) { 
