@@ -5,7 +5,7 @@ int my_getopt(char **argv, char *optstr, my_getopt_t *getopt_ptr) {
 // simplified version of getopt...yes... double loop would make a simpler and shorter function but getopt is used on ls source code...
     if(getopt_ptr->optindex == 0 ) {
        getopt_ptr->optindex  = 1;
-       getopt_ptr->optpos = 0; 
+       //getopt_ptr->optpos = 0; 
     }
 
     if(argv[getopt_ptr->optindex][0] != '-') {
