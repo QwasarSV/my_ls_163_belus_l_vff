@@ -44,7 +44,7 @@ typedef struct s_my_getopt
 
 // myls core components
 int flag_parser(int argc, char **argv, char *valid_args, my_getopt_t *getopt_ptr);
-    void count_path_array(int argc, char** argv,my_getopt_t *getopt_ptr);
+    void count_path_array(int argc, char** argv, my_getopt_t *getopt_ptr);
     void dynamic_malloc(int argc, char** argv, my_getopt_t *getopt_ptr);
     int my_getopt(char **argv, char *optstr, my_getopt_t *getopt_ptr);
     void n_state(char opt, my_getopt_t *getopt_ptr, char** argv);
@@ -82,7 +82,5 @@ void test_print_list(node_t *head, bool* flags);
 int node_count(node_t *head);
 int recur_node_count(node_t *head, int count);
 node_t* swap(node_t* head, int node_index1, int node_index2);
-
-
 
 #endif
