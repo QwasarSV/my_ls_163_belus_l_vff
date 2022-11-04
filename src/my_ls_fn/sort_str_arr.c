@@ -2,13 +2,16 @@
 
 void sort_str_arr(my_getopt_t *getopt_ptr) {
     int index = 0, jndex = 0;
-    while(index +1 < getopt_ptr->count_str -1) {
-        while(getopt_ptr->path_arr[index][jndex] != '\0' && getopt_ptr->path_arr[index + 1][jndex] != '\0') {
-            if(my_strcmp(getopt_ptr->path_arr[index],getopt_ptr->path_arr[index + 1]) > 0) {
-                    printf("do sumthing");                        
+    char* tmp = NULL;
+    while(index  < getopt_ptr->count_str -1) {
+        while(getopt_ptr->path_arr[index][jndex] != '\0' ) { // || getopt_ptr->path_arr[index + 1][jndex] != '\0'
+            if(my_strcmp(getopt_ptr->path_arr[index], getopt_ptr->path_arr[index + 1]) > 0) {
+                    tmp = getopt_ptr->path_arr[index + 1];
+                    getopt_ptr->path_arr[index +1] = getopt_ptr->path_arr[index]; 
+                    getopt_ptr->path_arr[index] = tmp;
                 }
+            jndex += 1;    
         }
-        jndex += 1;
         index += 1;
     }
 }
