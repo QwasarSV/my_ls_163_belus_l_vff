@@ -1,8 +1,10 @@
 #include "../../include/my_stdio.h"
 //identify base for itoa with corresponding *fmt. 
-int base_id(char *fmt) {
+int base_id(char *fmt)
+{
 
-    switch(*fmt) {
+    switch(*fmt)
+    {
         case 'd':
             return DECIMAL;
         break;

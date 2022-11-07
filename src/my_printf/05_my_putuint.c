@@ -1,6 +1,7 @@
 #include "../../include/my_stdio.h"
 
-int my_putuint(unsigned int u, va_list ap, char *p, int base) {
+int my_putuint(unsigned int u, va_list ap, char *p, int base)
+{
     int len = 0;
     u = va_arg(ap, unsigned int);
     u = wrap_arround(u);
