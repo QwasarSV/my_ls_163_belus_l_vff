@@ -7,7 +7,8 @@
 // #1 reduce scope size of projet get close to printf nb of syscall
 
 
-int my_printf(char * restrict format, ...) {
+int my_printf(char * restrict format, ...)
+{
     int n_ptrs = 0, i = 0, len = 0; 
     unsigned int    u = 0;
     char *p         = "\0" ;
@@ -17,15 +18,18 @@ int my_printf(char * restrict format, ...) {
     va_list ap;
     va_start(ap, format); //declare object ap of va_list type // must invoke before accessing va_arg
     
-    while (*format) {
-        if(*format == '%') {
+    while (*format)
+    {
+        if(*format == '%')
+        {
             // str      = realloc(str,sizeof(char)*my_strlen(str)+1);
             // my_puts(str);
             // free(str);
             // str      = malloc(sizeof(char)*100);
             format++; //change ptr position
             n_ptrs++; //update nbr of args passed trough function.  
-            switch(*format) {
+            switch(*format)
+            {
                 case 'c':
                    len += my_putchar(va_arg(ap, int)); // each call of va_vargs modify ap
                 break;
@@ -49,7 +53,9 @@ int my_printf(char * restrict format, ...) {
                     len += my_putaddr( x, ap, p, base_id(format)); //manage long long int, write address
                 break;
             }
-        } else {
+        }
+        else
+        {
             //char ch = *format;
             //my_strcat(str, &ch);
             len += my_putchar(*format); //print regular char from fmt

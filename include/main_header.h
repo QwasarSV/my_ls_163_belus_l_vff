@@ -9,7 +9,8 @@
 
 #ifndef STRUCT_NODE
 #define STRUCT_NODE
-struct node {
+struct node 
+{
     //hierarchy: n+1
     int value;
     struct node* daughter_head;
@@ -48,14 +49,14 @@ int flag_parser(int argc, char **argv, char *valid_args, my_getopt_t *getopt_ptr
     void dynamic_malloc(int argc, char** argv, my_getopt_t *getopt_ptr);
     int my_getopt(char **argv, char *optstr, my_getopt_t *getopt_ptr);
     void n_state(char opt, my_getopt_t *getopt_ptr, char** argv);
-    void sort_str_arr(my_getopt_t *getopt_ptr);
+
+void sort_str_arr(my_getopt_t *getopt_ptr);
 
 node_t* create_llist(struct dirent * pDirent, DIR *pDir, node_t *head, node_t *tmp_node); 
+
 void sort_asc(node_t* m_node);
 void lexi_sort(node_t* m_node);
-
 void print_and_free_llist(node_t* m_head, my_getopt_t *getopt_ptr);
-
 void dynamic_free(int argc, char** argv, my_getopt_t *getopt_ptr);
 void free_opt(int argc, char** argv, my_getopt_t *getopt_ptr);
 void fill_bool_array(bool* bool_arr, int len);

@@ -1,7 +1,9 @@
 #include "../../include/main_header.h"
 
-void n_state(char opt, my_getopt_t *getopt_ptr, char** argv) {
-    switch (opt) {
+void n_state(char opt, my_getopt_t *getopt_ptr, char** argv)
+{
+    switch (opt)
+    {
     case '1':
         getopt_ptr->boll_arr[0] = true;
     break;
